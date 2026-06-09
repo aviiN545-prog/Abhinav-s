@@ -127,6 +127,17 @@ footer {
   background-color: #333;
   color: white;
 }
+/* Dark mode */
+body.dark-mode {
+  background: #111;
+  color: white;
+}
+
+/* Brightness filter */
+body.bright-1 { filter: brightness(1.2); }
+body.bright-2 { filter: brightness(1.4); }
+body.bright-0 { filter: brightness(0.8); }
+
 
 
 
