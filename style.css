@@ -1,5 +1,6 @@
 body {
-  margin: 30px;
+  margin: 0px;
+  padding-top:80px;
   font-family: Arial, sans-serif;
   background: #fff;
   text-align: center;
@@ -86,7 +87,7 @@ body {
 
 /* Footer */
 footer {
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 10px;
   background-color: #333;
   color: white;
