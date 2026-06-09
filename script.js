@@ -41,7 +41,5 @@ function openSurprise() {
     </html>
   `);
 }
-        function toggleFloatWindow() {
-  document.getElementById("floatWindow").classList.toggle("show");
-
+      
 
