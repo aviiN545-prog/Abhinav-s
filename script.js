@@ -41,5 +41,33 @@ function openSurprise() {
     </html>
   `);
 }
+// Dark mode toggle
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+}
+
+// Font size controls
+function increaseFont() {
+  let currentSize = parseFloat(document.body.style.fontSize || 16);
+  document.body.style.fontSize = (currentSize + 2) + "px";
+}
+function decreaseFont() {
+  let currentSize = parseFloat(document.body.style.fontSize || 16);
+  if (currentSize > 10) {
+    document.body.style.fontSize = (currentSize - 2) + "px";
+  }
+}
+
+// Brightness controls
+let brightnessLevel = 1; // default
+function increaseBrightness() {
+  if (brightnessLevel < 2) brightnessLevel += 0.2;
+  document.body.style.filter = `brightness(${brightnessLevel})`;
+}
+function decreaseBrightness() {
+  if (brightnessLevel > 0.4) brightnessLevel -= 0.2;
+  document.body.style.filter = `brightness(${brightnessLevel})`;
+}
+
       
 
