@@ -1,6 +1,6 @@
 body {
-  margin: 0px;
-  padding-top:80px;
+  margin: 0;
+  padding-top: 80px; /* gap below top bar */
   font-family: Arial, sans-serif;
   background: #fff;
   text-align: center;
@@ -63,6 +63,39 @@ body {
   display: block;
 }
 
+/* Floating Button */
+#floatBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #000;
+  color: white;
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2000;
+}
+#floatWindow {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 260px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  padding: 20px;
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 1999;
+}
+#floatWindow.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Surprise Button */
 .button {
   display: inline-block;
@@ -88,7 +121,8 @@ body {
 /* Footer */
 footer {
   margin-top: 50px;
-  padding: 10px;
+  padding: 15px;
   background-color: #333;
   color: white;
 }
+
