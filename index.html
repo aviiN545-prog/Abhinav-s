@@ -96,7 +96,7 @@ body {
   }
 </style>
  <style>
-  #floatBtn {
+ #floatBtn {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -110,7 +110,6 @@ body {
   transition: left 0.3s ease, right 0.3s ease;
 }
 
-
 #floatWindow {
   position: fixed;
   bottom: 80px;
@@ -123,7 +122,7 @@ body {
   display: none;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.4s ease;
+  transition: all 1.0s ease;
   z-index: 999;
 }
 
@@ -132,6 +131,16 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+.dark-mode {
+  background: #111 !important;
+  color: #eee !important;
+}
+.dark-mode #floatWindow {
+  background: #222;
+  color: #eee;
+}
+
 
 .dark-mode {
   background: #111 !important;
@@ -199,76 +208,64 @@ body {
   </script>
     <div id="floatBtn">☰</div>
 
-<!-- Floating Button -->
-<div id="floatBtn">☰</div>
-
-<!-- Floating Window -->
 <div id="floatWindow">
-  <h3>Floating Window</h3>
-  <p>Click anywhere else on the screen to close the window</p>
+  <h3 id="windowTitle">Floating Window</h3>
+  <p id="windowText">This window appears smoothly when you click the button.</p>
   <button onclick="toggleDarkMode()" class="button">Toggle Dark Mode</button>
-   <button onclick="increaseFont()" class="button">A+</button>
+  <button onclick="increaseFont()" class="button">A+</button>
   <button onclick="decreaseFont()" class="button">A-</button>
 </div>
-    <script>
+ <script>
   const floatBtn = document.getElementById("floatBtn");
   const floatWindow = document.getElementById("floatWindow");
-
-  // Toggle floating window
-  floatBtn.onclick = () => {
-    floatWindow.classList.toggle("show");
-  };
-
-  // Dark mode toggle
-  function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-  }
-
-  // Dragging logic
-  floatBtn.onmousedown = function(event) {
-    event.preventDefault();
-    let shiftX = event.clientX - floatBtn.getBoundingClientRect().left;
-    let shiftY = event.clientY - floatBtn.getBoundingClientRect().top;
-
-    function moveAt(pageX, pageY) {
-      floatBtn.style.left = pageX - shiftX + 'px';
-      floatBtn.style.top = pageY - shiftY + 'px';
-      floatBtn.style.right = 'auto'; // reset right when dragging
-      floatBtn.style.position = 'fixed';
-    }
-
-    function onMouseMove(event) {
-      moveAt(event.pageX, event.pageY);
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-
-    floatBtn.onmouseup = function() {
-      document.removeEventListener('mousemove', onMouseMove);
-      floatBtn.onmouseup = null;
-
-      // Snap to nearest edge
-      const screenWidth = window.innerWidth;
-      const btnRect = floatBtn.getBoundingClientRect();
-      const btnCenter = btnRect.left + btnRect.width / 2;
-
-      if (btnCenter < screenWidth / 2) {
-        // Snap left
-        floatBtn.style.left = '20px';
-        floatBtn.style.right = 'auto';
-      } else {
-        // Snap right
-        floatBtn.style.right = '20px';
-        floatBtn.style.left = 'auto';
-      }
-    };
-  };
-
-  floatBtn.ondragstart = () => false;
-</script>
-    <script>
   const windowTitle = document.getElementById("windowTitle");
   const windowText = document.getElementById("windowText");
+
+  // Single click → toggle window
+  floatBtn.addEventListener("click", () => {
+    floatWindow.classList.toggle("show");
+  });
+
+  // Double click → enable drag
+  floatBtn.addEventListener("dblclick", () => {
+    floatBtn.onmousedown = function(event) {
+      event.preventDefault();
+      let shiftX = event.clientX - floatBtn.getBoundingClientRect().left;
+      let shiftY = event.clientY - floatBtn.getBoundingClientRect().top;
+
+      function moveAt(pageX, pageY) {
+        floatBtn.style.left = pageX - shiftX + 'px';
+        floatBtn.style.top = pageY - shiftY + 'px';
+        floatBtn.style.right = 'auto';
+        floatBtn.style.position = 'fixed';
+      }
+
+      function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+      }
+
+      document.addEventListener('mousemove', onMouseMove);
+
+      floatBtn.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        floatBtn.onmouseup = null;
+
+        // Snap to nearest edge
+        const screenWidth = window.innerWidth;
+        const btnRect = floatBtn.getBoundingClientRect();
+        const btnCenter = btnRect.left + btnRect.width / 2;
+
+        if (btnCenter < screenWidth / 2) {
+          floatBtn.style.left = '20px';
+          floatBtn.style.right = 'auto';
+        } else {
+          floatBtn.style.right = '20px';
+          floatBtn.style.left = 'auto';
+        }
+      };
+    };
+    floatBtn.ondragstart = () => false;
+  });
 
   // Dark mode toggle
   function toggleDarkMode() {
@@ -279,20 +276,16 @@ body {
   function increaseFont() {
     let currentSize = parseFloat(windowText.style.fontSize || 16);
     windowText.style.fontSize = (currentSize + 2) + "px";
-    windowTitle.style.fontSize = (currentSize + 6) + "px"; // keep title larger
+    windowTitle.style.fontSize = (currentSize + 6) + "px";
   }
-
   function decreaseFont() {
     let currentSize = parseFloat(windowText.style.fontSize || 16);
-    if (currentSize > 10) { // prevent too small
+    if (currentSize > 10) {
       windowText.style.fontSize = (currentSize - 2) + "px";
       windowTitle.style.fontSize = (currentSize + 2) + "px";
     }
   }
 </script>
-
-
-   
 
  
 </body>
