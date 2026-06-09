@@ -3,11 +3,16 @@ function reloadSite() {
 }
 
 function toggleMenu() {
-  document.getElementById("sideMenu").classList.toggle("show");
+  const menu = document.getElementById("sideMenu");
+  if (menu) menu.classList.toggle("show");
 }
 
 function toggleListWindow() {
   document.getElementById("listWindow").classList.toggle("show");
+}
+
+function toggleFloatWindow() {
+  document.getElementById("floatWindow").classList.toggle("show");
 }
 
 function openSurprise() {
@@ -30,16 +35,9 @@ function openSurprise() {
       <body>
         <h1>🎉 Hello Abhinav!</h1>
         <p>This is your new tab with a custom message.</p>
-        
-        document.addEventListener("click", function(e) {
-  if (!document.getElementById("listWindow").contains(e.target) &&
-      !document.querySelector(".listBtn").contains(e.target)) {
-    document.getElementById("listWindow").classList.remove("show");
-  }
-});
-
       </body>
     </html>
   `);
 }
+
 
