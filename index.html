@@ -96,18 +96,23 @@ body {
   }
 </style>
  <style>
- #floatBtn {
+#floatBtn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 15px 20px;
+  width: 60px;          /* fixed width */
+  height: 60px;         /* fixed height */
   background: #ff6f61;
   color: white;
-  border-radius: 50%;
+  border-radius: 50%;   /* always circular */
   cursor: pointer;
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: left 0.3s ease, right 0.3s ease;
+  display: flex;        /* center icon/text */
+  align-items: center;
+  justify-content: center;
+  transition: left 0.5s ease, right 0.5s ease;
+
 }
 
 #floatWindow {
@@ -122,7 +127,7 @@ body {
   display: none;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 1.0s ease;
+  transition: all 2.5s ease;
   z-index: 999;
 }
 
@@ -215,73 +220,59 @@ body {
   <button onclick="increaseFont()" class="button">A+</button>
   <button onclick="decreaseFont()" class="button">A-</button>
 </div>
-    <script>
+ <script>
   const floatBtn = document.getElementById("floatBtn");
   const floatWindow = document.getElementById("floatWindow");
-  const windowTitle = document.getElementById("windowTitle");
-  const windowText = document.getElementById("windowText");
 
-  // Single click → toggle window
-  floatBtn.addEventListener("click", (event) => {
-    event.stopPropagation(); // prevent closing immediately
-    floatWindow.classList.toggle("show");
-  });
+  let isDragging = false;
 
-  // Close window if clicking outside
-  document.addEventListener("click", (event) => {
-    if (floatWindow.classList.contains("show")) {
-      // if click is NOT inside window or on button
-      if (!floatWindow.contains(event.target) && event.target !== floatBtn) {
-        floatWindow.classList.remove("show");
-      }
+  // Handle mousedown for potential drag
+  floatBtn.addEventListener("mousedown", (event) => {
+    let shiftX = event.clientX - floatBtn.getBoundingClientRect().left;
+    let shiftY = event.clientY - floatBtn.getBoundingClientRect().top;
+
+    function moveAt(pageX, pageY) {
+      floatBtn.style.left = pageX - shiftX + "px";
+      floatBtn.style.top = pageY - shiftY + "px";
+      floatBtn.style.right = "auto";
+      floatBtn.style.position = "fixed";
+      floatBtn.style.borderRadius = "50%"; // keep circular
     }
-  });
 
-  // Double click → enable drag
-  floatBtn.addEventListener("dblclick", () => {
-    function startDrag(event) {
-      event.preventDefault();
-      let shiftX = event.clientX - floatBtn.getBoundingClientRect().left;
-      let shiftY = event.clientY - floatBtn.getBoundingClientRect().top;
+    function onMouseMove(event) {
+      isDragging = true;
+      moveAt(event.pageX, event.pageY);
+    }
 
-      function moveAt(pageX, pageY) {
-        floatBtn.style.left = pageX - shiftX + 'px';
-        floatBtn.style.top = pageY - shiftY + 'px';
-        floatBtn.style.right = 'auto';
-        floatBtn.style.position = 'fixed';
-      }
+    document.addEventListener("mousemove", onMouseMove);
 
-      function onMouseMove(event) {
-        moveAt(event.pageX, event.pageY);
-      }
+    floatBtn.onmouseup = function () {
+      document.removeEventListener("mousemove", onMouseMove);
+      floatBtn.onmouseup = null;
 
-      document.addEventListener('mousemove', onMouseMove);
-
-      floatBtn.onmouseup = function() {
-        document.removeEventListener('mousemove', onMouseMove);
-        floatBtn.onmouseup = null;
-
+      if (isDragging) {
         // Snap to nearest edge
         const screenWidth = window.innerWidth;
         const btnRect = floatBtn.getBoundingClientRect();
         const btnCenter = btnRect.left + btnRect.width / 2;
 
         if (btnCenter < screenWidth / 2) {
-          floatBtn.style.left = '20px';
-          floatBtn.style.right = 'auto';
+          floatBtn.style.left = "20px";
+          floatBtn.style.right = "auto";
         } else {
-          floatBtn.style.right = '20px';
-          floatBtn.style.left = 'auto';
+          floatBtn.style.right = "20px";
+          floatBtn.style.left = "auto";
         }
+      } else {
+        // If no drag happened → treat as click
+        floatWindow.classList.toggle("show");
+      }
 
-        // Remove drag handler after release
-        floatBtn.onmousedown = null;
-      };
-    }
-
-    floatBtn.onmousedown = startDrag;
-    floatBtn.ondragstart = () => false;
+      isDragging = false;
+    };
   });
+
+  floatBtn.ondragstart = () => false;
 
   // Dark mode toggle
   function toggleDarkMode() {
@@ -299,7 +290,17 @@ body {
       document.body.style.fontSize = (currentSize - 2) + "px";
     }
   }
+
+  // Close window if clicking outside
+  document.addEventListener("click", (event) => {
+    if (floatWindow.classList.contains("show")) {
+      if (!floatWindow.contains(event.target) && event.target !== floatBtn) {
+        floatWindow.classList.remove("show");
+      }
+    }
+  });
 </script>
+
 
 
  
