@@ -1,1 +1,93 @@
-<html>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  text-align: center;
+}
+
+/* Top Bar */
+#topBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: white;
+  font-size: 24px;
+  z-index: 1000;
+}
+#topBar .logo {
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.navButtons {
+  display: flex;
+  gap: 10px;
+}
+.listBtn, .menuBtn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.listBtn:hover, .menuBtn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Popup Window */
+#listWindow {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  padding: 20px;
+  display: none;
+  z-index: 1500;
+  text-align: left;
+}
+#listWindow.show {
+  display: block;
+}
+
+/* Surprise Button */
+.button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #ff6f61, #ff3b2e);
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: pulse 2s infinite;
+}
+.button:hover {
+  background: linear-gradient(45deg, #ff3b2e, #ff6f61);
+  transform: scale(1.1) rotate(-2deg);
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,111,97,0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(255,111,97,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,111,97,0); }
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  padding: 15px;
+  background-color: #333;
+  color: white;
+}
