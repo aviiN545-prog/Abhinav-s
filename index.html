@@ -100,18 +100,19 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 60px;          /* fixed width */
-  height: 60px;         /* fixed height */
+  width: 60px;        
+  height: 60px;
   background: #ff6f61;
   color: white;
-  border-radius: 50%;   /* always circular */
+  border-radius: 50%;   
   cursor: pointer;
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  display: flex;        /* center icon/text */
+  display: flex;
   align-items: center;
   justify-content: center;
-  transition: left 0.5s ease, right 0.5s ease;
+}
+
 
 }
 
@@ -220,13 +221,12 @@ body {
   <button onclick="increaseFont()" class="button">A+</button>
   <button onclick="decreaseFont()" class="button">A-</button>
 </div>
- <script>
+<script>
   const floatBtn = document.getElementById("floatBtn");
   const floatWindow = document.getElementById("floatWindow");
 
   let isDragging = false;
 
-  // Handle mousedown for potential drag
   floatBtn.addEventListener("mousedown", (event) => {
     let shiftX = event.clientX - floatBtn.getBoundingClientRect().left;
     let shiftY = event.clientY - floatBtn.getBoundingClientRect().top;
@@ -246,9 +246,9 @@ body {
 
     document.addEventListener("mousemove", onMouseMove);
 
-    floatBtn.onmouseup = function () {
+    document.addEventListener("mouseup", function onMouseUp() {
       document.removeEventListener("mousemove", onMouseMove);
-      floatBtn.onmouseup = null;
+      document.removeEventListener("mouseup", onMouseUp);
 
       if (isDragging) {
         // Snap to nearest edge
@@ -269,37 +269,13 @@ body {
       }
 
       isDragging = false;
-    };
+    });
   });
 
   floatBtn.ondragstart = () => false;
-
-  // Dark mode toggle
-  function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-  }
-
-  // Font size controls (whole page)
-  function increaseFont() {
-    let currentSize = parseFloat(document.body.style.fontSize || 16);
-    document.body.style.fontSize = (currentSize + 2) + "px";
-  }
-  function decreaseFont() {
-    let currentSize = parseFloat(document.body.style.fontSize || 16);
-    if (currentSize > 10) {
-      document.body.style.fontSize = (currentSize - 2) + "px";
-    }
-  }
-
-  // Close window if clicking outside
-  document.addEventListener("click", (event) => {
-    if (floatWindow.classList.contains("show")) {
-      if (!floatWindow.contains(event.target) && event.target !== floatBtn) {
-        floatWindow.classList.remove("show");
-      }
-    }
-  });
 </script>
+
+
 
 
 
