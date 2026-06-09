@@ -291,33 +291,37 @@ body {
     <h2>About Me</h2>
     <p>I’m Abhinav, learning web development and building my first site with GitHub Pages.I have provided some basic features in the website which you can use through the floating window. I will also add some more features further.</p>
   </section>
-    <a href="javascript:void(0)" class="button" onclick="openNewPage()">Know More</a>
+   <div class="surprise-container">
+  <button class="button" onclick="openSurprise()">Surprise</button>
+</div>
+<script>
+  function openSurprise() {
+    const newWindow = window.open("", "_blank");
+    newWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Surprise!</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background: linear-gradient(to right, #74ebd5, #ACB6E5);
+              text-align: center;
+              padding: 50px;
+            }
+            h1 { color: #333; }
+          </style>
+        </head>
+        <body>
+          <h1>🎉 Hello Abhinav!</h1>
+          <p>This is your animated surprise message.</p>
+        </body>
+      </html>
+    `);
+  }
+</script>
 
-     <script>
-    function openNewPage() {
-      const newWindow = window.open("", "_blank");
-      newWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>New Tab</title>
-            <style>
-              body {
-                font-family: Arial, sans-serif;
-                background: linear-gradient(to right, #74ebd5, #ACB6E5);
-                text-align: center;
-                padding: 50px;
-              }
-              h1 { color: #333; }
-            </style>
-          </head>
-          <body>
-            <h1>🎉 Hello </h1>
-            <p>This is just a simple website.</p>
-          </body>
-        </html>
-      `);
-      </script>
+    
     
     }
   <section>
