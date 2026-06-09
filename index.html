@@ -112,40 +112,58 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-
-}
-
+/* Floating Window Styles */
 #floatWindow {
   position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 300px;
+  bottom: 80px;          /* sits above the button */
+  right: 20px;           /* aligned with button */
+  width: 300px;          /* fixed width */
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  border-radius: 12px;   /* rounded corners */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
   padding: 20px;
-  display: none;
+  display: none;         /* hidden by default */
   opacity: 0;
   transform: translateY(20px);
-  transition: all 2.5s ease;
+  transition: all 0.4s ease; /* smooth animation */
   z-index: 999;
 }
 
+/* When window is visible */
 #floatWindow.show {
   display: block;
   opacity: 1;
   transform: translateY(0);
 }
 
-.dark-mode {
-  background: #111 !important;
-  color: #eee !important;
-}
+/* Dark mode styling */
 .dark-mode #floatWindow {
   background: #222;
   color: #eee;
 }
+
+
+#floatWindow .button {
+  display: inline-block;
+  margin: 8px 5px;
+  padding: 8px 16px;
+  background: linear-gradient(45deg, #ff6f61, #ff3b2e);
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#floatWindow .button:hover {
+  background: linear-gradient(45deg, #ff3b2e, #ff6f61);
+  transform: scale(1.05);
+}
+
+
+
+
 
 
 .dark-mode {
