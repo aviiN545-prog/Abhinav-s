@@ -215,15 +215,26 @@ body {
   <button onclick="increaseFont()" class="button">A+</button>
   <button onclick="decreaseFont()" class="button">A-</button>
 </div>
-<script>
+    <script>
   const floatBtn = document.getElementById("floatBtn");
   const floatWindow = document.getElementById("floatWindow");
   const windowTitle = document.getElementById("windowTitle");
   const windowText = document.getElementById("windowText");
 
   // Single click → toggle window
-  floatBtn.addEventListener("click", () => {
+  floatBtn.addEventListener("click", (event) => {
+    event.stopPropagation(); // prevent closing immediately
     floatWindow.classList.toggle("show");
+  });
+
+  // Close window if clicking outside
+  document.addEventListener("click", (event) => {
+    if (floatWindow.classList.contains("show")) {
+      // if click is NOT inside window or on button
+      if (!floatWindow.contains(event.target) && event.target !== floatBtn) {
+        floatWindow.classList.remove("show");
+      }
+    }
   });
 
   // Double click → enable drag
@@ -268,7 +279,6 @@ body {
       };
     }
 
-    // Attach drag only once per double click
     floatBtn.onmousedown = startDrag;
     floatBtn.ondragstart = () => false;
   });
@@ -278,17 +288,15 @@ body {
     document.body.classList.toggle("dark-mode");
   }
 
-  // Font size controls
+  // Font size controls (whole page)
   function increaseFont() {
     let currentSize = parseFloat(document.body.style.fontSize || 16);
-    windowText.style.fontSize = (currentSize + 2) + "px";
-    windowTitle.style.fontSize = (currentSize + 6) + "px";
+    document.body.style.fontSize = (currentSize + 2) + "px";
   }
   function decreaseFont() {
     let currentSize = parseFloat(document.body.style.fontSize || 16);
     if (currentSize > 10) {
-      windowText.style.fontSize = (currentSize - 2) + "px";
-      windowTitle.style.fontSize = (currentSize + 2) + "px";
+      document.body.style.fontSize = (currentSize - 2) + "px";
     }
   }
 </script>
