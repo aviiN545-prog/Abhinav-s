@@ -11,13 +11,13 @@
   left: 0;
   width: 100%;
   height: 70px;                  /* thick strip */
-  background: linear-gradient(90deg, #ff6f61, #ff3b2e);
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
   color: white;
-  font-family: 'Cursive', sans-serif; /* stylish font */
+  font-family: 'Georgia', 'Times New Roman', serif; 
   font-size: 24px;
   z-index: 1000;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -26,7 +26,9 @@
 /* Logo (your name) */
 #topBar .logo {
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
+  color: white;
+  text-transform: uppercase;
 }
 
 /* Buttons on right */
@@ -238,11 +240,6 @@ body {
   transform: scale(1.05);
 }
 
-
-
-
-
-
 .dark-mode {
   background: #111 !important;
   color: #eee !important;
@@ -258,9 +255,12 @@ body {
 <body>
   <!-- Top Navigation Bar -->
 <header id="topBar">
-  <div class="logo">Abhinav</div>
+  <!-- Logo (your name) reloads site -->
+  <div class="logo" onclick="reloadSite()">Abhinav</div>
+  
   <nav class="navButtons">
-    <button class="homeBtn">Home</button>
+    <!-- Home button reloads site -->
+    <button class="homeBtn" onclick="reloadSite()">Home</button>
     <button class="menuBtn" onclick="toggleMenu()">⋮</button>
   </nav>
 </header>
@@ -271,6 +271,7 @@ body {
   <a href="#projects">Projects</a>
   <a href="#about">About</a>
 </div>
+
 
   <header>🌐 Welcome to Abhinav’s Website</header>
   <h1>Hello, I’m Abhinav</h1>
@@ -412,12 +413,18 @@ body {
       }
     }
   });
-</script>
-    <script>
+
+  <script>
+  function reloadSite() {
+    // Reloads the current page
+    location.reload();
+  }
+
   function toggleMenu() {
     document.getElementById("sideMenu").classList.toggle("show");
   }
 </script>
+
 
 
 
