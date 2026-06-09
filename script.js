@@ -35,6 +35,11 @@ function openSurprise() {
       <body>
         <h1>🎉 Hello Abhinav!</h1>
         <p>This is your new tab with a custom message.</p>
+      
+        function toggleFloatWindow() {
+  document.getElementById("floatWindow").classList.toggle("show");
+}
+
       </body>
     </html>
   `);
