@@ -30,6 +30,14 @@ function openSurprise() {
       <body>
         <h1>🎉 Hello Abhinav!</h1>
         <p>This is your new tab with a custom message.</p>
+        
+        document.addEventListener("click", function(e) {
+  if (!document.getElementById("listWindow").contains(e.target) &&
+      !document.querySelector(".listBtn").contains(e.target)) {
+    document.getElementById("listWindow").classList.remove("show");
+  }
+});
+
       </body>
     </html>
   `);
