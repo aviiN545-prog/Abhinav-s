@@ -107,7 +107,9 @@ body {
   cursor: pointer;
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: left 0.3s ease, right 0.3s ease;
 }
+
 
 #floatWindow {
   position: fixed;
@@ -141,9 +143,7 @@ body {
 }
    </style>
   
-
-
-  </style>
+</style>
 </head>
 <body>
   <header>🌐 Welcome to Abhinav’s Website</header>
@@ -199,11 +199,16 @@ body {
   </script>
     <div id="floatBtn">☰</div>
 
+<!-- Floating Button -->
+<div id="floatBtn">☰</div>
+
 <!-- Floating Window -->
 <div id="floatWindow">
   <h3>Floating Window</h3>
-  <p>This window appears smoothly when you click the button.</p>
+  <p>Click anywhere else on the screen to close the window</p>
   <button onclick="toggleDarkMode()" class="button">Toggle Dark Mode</button>
+   <button onclick="increaseFont()" class="button">A+</button>
+  <button onclick="decreaseFont()" class="button">A-</button>
 </div>
     <script>
   const floatBtn = document.getElementById("floatBtn");
@@ -219,7 +224,7 @@ body {
     document.body.classList.toggle("dark-mode");
   }
 
-  // Make button draggable
+  // Dragging logic
   floatBtn.onmousedown = function(event) {
     event.preventDefault();
     let shiftX = event.clientX - floatBtn.getBoundingClientRect().left;
@@ -228,6 +233,7 @@ body {
     function moveAt(pageX, pageY) {
       floatBtn.style.left = pageX - shiftX + 'px';
       floatBtn.style.top = pageY - shiftY + 'px';
+      floatBtn.style.right = 'auto'; // reset right when dragging
       floatBtn.style.position = 'fixed';
     }
 
@@ -240,11 +246,53 @@ body {
     floatBtn.onmouseup = function() {
       document.removeEventListener('mousemove', onMouseMove);
       floatBtn.onmouseup = null;
+
+      // Snap to nearest edge
+      const screenWidth = window.innerWidth;
+      const btnRect = floatBtn.getBoundingClientRect();
+      const btnCenter = btnRect.left + btnRect.width / 2;
+
+      if (btnCenter < screenWidth / 2) {
+        // Snap left
+        floatBtn.style.left = '20px';
+        floatBtn.style.right = 'auto';
+      } else {
+        // Snap right
+        floatBtn.style.right = '20px';
+        floatBtn.style.left = 'auto';
+      }
     };
   };
 
   floatBtn.ondragstart = () => false;
 </script>
+    <script>
+  const windowTitle = document.getElementById("windowTitle");
+  const windowText = document.getElementById("windowText");
+
+  // Dark mode toggle
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+  // Font size controls
+  function increaseFont() {
+    let currentSize = parseFloat(windowText.style.fontSize || 16);
+    windowText.style.fontSize = (currentSize + 2) + "px";
+    windowTitle.style.fontSize = (currentSize + 6) + "px"; // keep title larger
+  }
+
+  function decreaseFont() {
+    let currentSize = parseFloat(windowText.style.fontSize || 16);
+    if (currentSize > 10) { // prevent too small
+      windowText.style.fontSize = (currentSize - 2) + "px";
+      windowTitle.style.fontSize = (currentSize + 2) + "px";
+    }
+  }
+</script>
+
+
+   
 
  
 </body>
