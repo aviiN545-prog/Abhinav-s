@@ -87,7 +87,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: url("photoforweb.jpg") no-repeat center center fixed;
+  background: #ffffff;
   background-size: cover;
   text-align: center;
 }
@@ -179,41 +179,40 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 60px;        
+  width: 60px;
   height: 60px;
   background: #ff6f61;
   color: white;
-  border-radius: 50%;   
+  border-radius: 50%;
   cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-/* Floating Window Styles */
-#floatWindow {
-  position: fixed;
-  bottom: 80px;          /* sits above the button */
-  right: 20px;           /* aligned with button */
-  width: 300px;          /* fixed width */
-  background: white;
-  border-radius: 12px;   /* rounded corners */
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-  padding: 20px;
-  display: none;         /* hidden by default */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease; /* smooth animation */
-  z-index: 999;
+  z-index: 2000; /* above top strip */
 }
 
-/* When window is visible */
+#floatWindow {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 260px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  padding: 20px;
+  display: none;   /* hidden by default */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 1999;
+}
+
 #floatWindow.show {
   display: block;
   opacity: 1;
   transform: translateY(0);
 }
+
 
 /* Dark mode styling */
 .dark-mode #floatWindow {
@@ -328,7 +327,7 @@ body {
 
 <div id="floatWindow">
   <h3 id="windowTitle">Floating Window</h3>
-  <p id="windowText">This window appears smoothly when you click the button.</p>
+  <p id="windowText">Click anywhere else to close the window.</p>
   <button onclick="toggleDarkMode()" class="button">Toggle Dark Mode</button>
   <button onclick="increaseFont()" class="button">A+</button>
   <button onclick="decreaseFont()" class="button">A-</button>
@@ -413,23 +412,18 @@ body {
       }
     }
   });
+</script>
+  
 
   <script>
   function reloadSite() {
-    // Reloads the current page
-    location.reload();
+    location.reload(); // reloads the page
   }
 
   function toggleMenu() {
     document.getElementById("sideMenu").classList.toggle("show");
   }
 </script>
-
-
-
-
-
-
 
 
  
