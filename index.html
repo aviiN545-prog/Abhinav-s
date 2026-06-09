@@ -47,6 +47,32 @@
       background-color: #333;
       color: white;
     }
+    /* ✨ Animated button styles */
+.button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #ff6f61, #ff3b2e);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.button:hover {
+  background: linear-gradient(45deg, #ff3b2e, #ff6f61);
+  transform: scale(1.1) rotate(-2deg);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,111,97, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(255,111,97, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,111,97, 0); }
+}
+
   </style>
 </head>
 <body>
