@@ -95,12 +95,20 @@ body {
   z-index: 1999;
   font-size: 20px;
 }
-body.dark-mode #floatWindow {
-  background: #222 !important;
-  color: white !important;
+/* Normal floating window */
+#floatWindow {
+  background: #fff;   
+  color: #000;        
 }
 
+/* Dark mode override */
+body.dark-mode #floatWindow {
+  background: #222;   
+  color: #fff;       
 }
+
+
+
 
 
 #floatWindow.show {
