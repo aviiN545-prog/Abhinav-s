@@ -59,14 +59,16 @@ function decreaseFont() {
 }
 
 // Brightness controls
-let brightnessLevel = 1; // default
+let brightnessLevel = 1;
+
 function increaseBrightness() {
   if (brightnessLevel < 2) brightnessLevel += 0.2;
-  document.body.style.filter = `brightness(${brightnessLevel})`;
+  document.getElementById("pageContent").style.filter = `brightness(${brightnessLevel})`;
 }
+
 function decreaseBrightness() {
   if (brightnessLevel > 0.4) brightnessLevel -= 0.2;
-  document.body.style.filter = `brightness(${brightnessLevel})`;
+  document.getElementById("pageContent").style.filter = `brightness(${brightnessLevel})`;
 }
 
 
