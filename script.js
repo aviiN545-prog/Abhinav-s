@@ -74,6 +74,43 @@ function decreaseBrightness() {
 function resetBrightness() {
   document.body.classList.remove("bright-0", "bright-1", "bright-2");
 }
+function toggleFloatWindow() {
+  const floatWindow = document.getElementById("floatWindow");
+  floatWindow.classList.toggle("show");
+}
+
+// Close floating window when clicking outside
+document.addEventListener("click", function(event) {
+  const floatWindow = document.getElementById("floatWindow");
+  const floatBtn = document.getElementById("floatBtn");
+
+  // If window is open AND click is outside both the window and the button
+  if (floatWindow.classList.contains("show") &&
+      !floatWindow.contains(event.target) &&
+      !floatBtn.contains(event.target)) {
+    floatWindow.classList.remove("show");
+  }
+});
+// Toggle the More window
+function toggleMoreWindow() {
+  const moreWindow = document.getElementById("moreWindow");
+  moreWindow.classList.toggle("show");
+}
+
+// Close More window when clicking outside
+document.addEventListener("click", function(event) {
+  const moreWindow = document.getElementById("moreWindow");
+  const moreBtn = document.querySelector(".listBtn"); // your "More" button
+
+  // If window is open AND click is outside both the window and the button
+  if (moreWindow.classList.contains("show") &&
+      !moreWindow.contains(event.target) &&
+      !moreBtn.contains(event.target)) {
+    moreWindow.classList.remove("show");
+  }
+});
+
+
 
 
 
