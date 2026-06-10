@@ -11,19 +11,19 @@
   <header id="topBar">
     <div class="logo" onclick="reloadSite()">ABHINAV</div>
     <nav class="navButtons">
-      <button class="listBtn" onclick="toggleListWindow()">Know More</button>
+      <button class="listBtn" onclick="toggleMoreWindow()">More</button>
       <button class="menuBtn" onclick="toggleMenu()">⋮</button>
     </nav>
   </header>
 
-  <!-- Popup Window -->
-  <div id="listWindow">
-    <h3>Quick Options</h3>
-    <ul>
-      <li><a href="mailto:someone@example.com">📧 Contact Me</a></li>
-      <li><a href="#projects">🛠 View Projects</a></li>
-      <li><a href="#about">👤 About Me</a></li>
-    </ul>
+ 
+
+  </div>
+
+  <!-- Floating Button + Window -->
+  <body>
+  <div id="pageContent">
+    <!-- all sections, footer, etc. -->
   </div>
 
   <!-- Floating Button + Window -->
@@ -31,7 +31,14 @@
   <div id="floatWindow">
     <h3>Floating Window</h3>
     <p>This is visible now!</p>
+    <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    <button onclick="increaseFont()">A+</button>
+    <button onclick="decreaseFont()">A-</button>
+    <button onclick="increaseBrightness()">☀️+</button>
+    <button onclick="decreaseBrightness()">☀️-</button>
   </div>
+</body>
+
 
   <section id="about">
     <h2>About Me</h2>
@@ -56,14 +63,14 @@
 
   <footer>© 2026 Abhinav | Built with GitHub Pages</footer>
   <div id="floatBtn" onclick="toggleFloatWindow()">☰</div>
-<div id="floatWindow">
-  <h3>Options</h3>
+<div id="moreWindow">
   <ul>
-    <li><a href="mailto:someone@example.com">📧 Contact Me</a></li>
-    <li><a href="#projects">🛠 Projects</a></li>
-    <li><a href="#about">👤 About Me</a></li>
+    <li><a href="about.html">👤 About Me</a></li>
+    <li><a href="contact.html">📧 Contact Me</a></li>
   </ul>
 </div>
+
+
 
 
   <!-- External JS -->

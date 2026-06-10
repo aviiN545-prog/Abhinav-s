@@ -46,19 +46,23 @@ body {
 }
 
 /* Popup Window */
-#listWindow {
+#moreWindow {
   position: fixed;
-  top: 100px;
+  top: 80px;   /* just below your top bar */
   right: 20px;
-  width: 250px;
+  width: 200px;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-  padding: 20px;
-  display: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  padding: 10px;
+  display: none;   /* hidden by default */
   z-index: 1500;
-  text-align: left;
 }
+#moreWindow.show {
+  display: block;  /* visible when toggled */
+}
+
+
 /* Floating Button */
 #floatBtn {
   position: fixed;
@@ -89,7 +93,24 @@ body {
   transform: translateY(20px);
   transition: all 0.3s ease;
   z-index: 1999;
+  font-size: 20px;
 }
+/* Normal floating window */
+#floatWindow {
+  background: #fff;   
+  color: #000;        
+}
+
+/* Dark mode override */
+body.dark-mode #floatWindow {
+  background: #222;   
+  color: #fff;       
+}
+
+
+
+
+
 #floatWindow.show {
   display: block;
   opacity: 1;
@@ -127,6 +148,30 @@ footer {
   background-color: #333;
   color: white;
 }
+/* Dark mode */
+body.dark-mode {
+  background: #111;
+  color: white;
+}
+
+/* Optional brightness filters */
+body.bright-1 { filter: brightness(1.2); }
+body.bright-2 { filter: brightness(1.4); }
+body.bright-0 { filter: brightness(0.8); }
+
+#pageContent {
+  transition: filter 0.3s ease;
+}
+
+#floatBtn, #floatWindow {
+  filter: none !important;  /* exclude from brightness */
+}
+
+
+
+
+
+
 
 
 
