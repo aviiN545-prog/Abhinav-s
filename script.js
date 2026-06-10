@@ -7,9 +7,10 @@ function toggleMenu() {
   if (menu) menu.classList.toggle("show");
 }
 
-function toggleListWindow() {
-  document.getElementById("listWindow").classList.toggle("show");
+function toggleMoreWindow() {
+  document.getElementById("moreWindow").classList.toggle("show");
 }
+
 
 function toggleFloatWindow() {
   document.getElementById("floatWindow").classList.toggle("show");
