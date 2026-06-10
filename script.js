@@ -61,16 +61,20 @@ function decreaseFont() {
 
 // Brightness controls
 let brightnessLevel = 1;
-
 function increaseBrightness() {
-  if (brightnessLevel < 2) brightnessLevel += 0.2;
-  document.getElementById("pageContent").style.filter = `brightness(${brightnessLevel})`;
+  document.body.classList.remove("bright-0");
+  document.body.classList.add("bright-1");
 }
 
 function decreaseBrightness() {
-  if (brightnessLevel > 0.4) brightnessLevel -= 0.2;
-  document.getElementById("pageContent").style.filter = `brightness(${brightnessLevel})`;
+  document.body.classList.remove("bright-1");
+  document.body.classList.add("bright-0");
 }
+
+function resetBrightness() {
+  document.body.classList.remove("bright-0", "bright-1", "bright-2");
+}
+
 
 
 
