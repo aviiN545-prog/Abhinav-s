@@ -89,6 +89,7 @@ body {
   transform: translateY(20px);
   transition: all 0.3s ease;
   z-index: 1999;
+  font-size: 20px;
 }
 #floatWindow.show {
   display: block;
