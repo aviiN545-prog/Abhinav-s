@@ -145,8 +145,16 @@ body.bright-1 { filter: brightness(1.2); }
 body.bright-2 { filter: brightness(1.4); }
 body.bright-0 { filter: brightness(0.8); }
 
-
+#pageContent {
+  transition: filter 0.3s ease;
 }
+
+#floatBtn, #floatWindow {
+  filter: none !important;  /* exclude from brightness */
+}
+
+
+
 
 
 
