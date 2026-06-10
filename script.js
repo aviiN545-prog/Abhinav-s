@@ -1,21 +1,27 @@
+// Reload site
 function reloadSite() {
   location.reload();
 }
 
+// Toggle side menu
 function toggleMenu() {
   const menu = document.getElementById("sideMenu");
   if (menu) menu.classList.toggle("show");
 }
 
+// Toggle More window
 function toggleMoreWindow() {
-  document.getElementById("moreWindow").classList.toggle("show");
+  const moreWindow = document.getElementById("moreWindow");
+  moreWindow.classList.toggle("show");
 }
 
-
+// Toggle Floating window
 function toggleFloatWindow() {
-  document.getElementById("floatWindow").classList.toggle("show");
+  const floatWindow = document.getElementById("floatWindow");
+  floatWindow.classList.toggle("show");
 }
 
+// Surprise button
 function openSurprise() {
   const newWindow = window.open("", "_blank");
   newWindow.document.write(`
@@ -36,12 +42,11 @@ function openSurprise() {
       <body>
         <h1>🎉 Hello Abhinav!</h1>
         <p>This is your new tab with a custom message.</p>
-      
-
       </body>
     </html>
   `);
 }
+
 // Dark mode toggle
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
@@ -59,56 +64,41 @@ function decreaseFont() {
   }
 }
 
-// Brightness controls
-let brightnessLevel = 1;
+// Brightness controls (using CSS classes)
 function increaseBrightness() {
   document.body.classList.remove("bright-0");
   document.body.classList.add("bright-1");
 }
-
 function decreaseBrightness() {
   document.body.classList.remove("bright-1");
   document.body.classList.add("bright-0");
 }
-
 function resetBrightness() {
   document.body.classList.remove("bright-0", "bright-1", "bright-2");
 }
-function toggleFloatWindow() {
-  const floatWindow = document.getElementById("floatWindow");
-  floatWindow.classList.toggle("show");
-}
 
-// Close floating window when clicking outside
+// Close windows when clicking outside
 document.addEventListener("click", function(event) {
   const floatWindow = document.getElementById("floatWindow");
   const floatBtn = document.getElementById("floatBtn");
+  const moreWindow = document.getElementById("moreWindow");
+  const moreBtn = document.querySelector(".listBtn");
 
-  // If window is open AND click is outside both the window and the button
+  // Close floating window if open and click is outside
   if (floatWindow.classList.contains("show") &&
       !floatWindow.contains(event.target) &&
       !floatBtn.contains(event.target)) {
     floatWindow.classList.remove("show");
   }
-});
-// Toggle the More window
-function toggleMoreWindow() {
-  const moreWindow = document.getElementById("moreWindow");
-  moreWindow.classList.toggle("show");
-}
 
-// Close More window when clicking outside
-document.addEventListener("click", function(event) {
-  const moreWindow = document.getElementById("moreWindow");
-  const moreBtn = document.querySelector(".listBtn"); // your "More" button
-
-  // If window is open AND click is outside both the window and the button
+  // Close More window if open and click is outside
   if (moreWindow.classList.contains("show") &&
       !moreWindow.contains(event.target) &&
       !moreBtn.contains(event.target)) {
     moreWindow.classList.remove("show");
   }
 });
+
 
 
 
